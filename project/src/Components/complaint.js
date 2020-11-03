@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './complaint.css';
+import axios from 'axios';
 
 
 export default class Complaint extends Component {
@@ -66,6 +67,16 @@ export default class Complaint extends Component {
     console.log(`Phone: ${this.state.Phone}`);
     console.log(`Message: ${this.state.Message}`);
 
+    const newData = {
+      First_Name: this.state.First_Name,
+      Last_Name: this.state.Last_Name,
+      Mail: this.state.Mail,
+      Phone: this.state.Phone,
+      Message: this.state.Message
+    }
+
+    axios.post('http://localhost:4000/data/add', newData) 
+      .then(res => console.log(res.data));
 
     this.setState({
       First_Name: '',
